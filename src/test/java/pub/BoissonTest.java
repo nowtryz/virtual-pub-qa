@@ -1,11 +1,13 @@
 package pub;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class BoissonTest {
 	private Boisson b1;
@@ -24,21 +26,20 @@ class BoissonTest {
 	void testBoissonString() {
 		b1 = new Boisson("Coca-Cola");
 		assertNotNull(b1);
-		assertTrue(b1.nom.equals("Coca-Cola"));
-		assertTrue(!b1.nom.equals("Orangina"));
-		assertTrue(b1.alcoolise.equals(false));
-		assertTrue(!b1.alcoolise.equals(false));
+		assertEquals("Coca-Cola", b1.nom);
+		assertNotEquals("Orangina", b1.nom);
+		assertFalse(b1.alcoolise);
 		
 	}
 
-	@Test
-	void testBoissonStringFloat() {
-		b2 = new Boisson("Whisky", (float) 40.0);
-		b3 = new Boisson("Biere", (float) 0);
-		assertNotNull(b2);
-		assertNotNull(b3);
-		assertTrue(b2.alcoolise.equals(true));
-		assertTrue(b3.alcoolise.equals(false));
+	@ParameterizedTest
+	@CsvSource({
+		"Whisky, 40.0",
+		"Biere, .0"
+	})
+	void testBoissonStringFloat(String nom, float degre) {
+		b2 = new Boisson(nom, degre);
+		assertTrue(b2.alcoolise);
 	}
 
 	@Test

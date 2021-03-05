@@ -8,10 +8,13 @@ import org.junit.jupiter.api.Test;
 
 class CaveTest {
 	private Cave cave;
+	private Boisson b1;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		Cave cave = new Cave();
+		cave = new Cave();
+		b1 = new Boisson("Coca-Cola");
+		
 	}
 
 	@AfterEach
@@ -25,14 +28,13 @@ class CaveTest {
 
 	@Test
 	void testAdd() {
-		Boisson b1 = new Boisson("Whisky");
 		cave.rayons.add(b1);
 		assertFalse(cave.rayons.isEmpty());
 	}
 
 	@Test
 	void testTake() {
-		fail("Not yet implemented");
+		assertTrue(b1.equals(cave.take("Coca-Cola")));
 	}
 
 	@Test
