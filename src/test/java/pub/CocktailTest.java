@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CocktailTest {
-	private Cocktail c1;
+	Cocktail c1;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -20,7 +20,6 @@ class CocktailTest {
 
 	@Test
 	void testCocktail() {
-		
 		assertNotNull(c1);
 		assertTrue(c1.nom.equals("Mojito"));
 	}
@@ -29,7 +28,7 @@ class CocktailTest {
 	void testAdd() {
 		c1.add("Menthe", 2.0);
 		c1.add("Rhum", 6.0);
-		c1.add("Eau gazeuse", -12.0);
+		c1.add("Eau gazeuse", 12.0);
 		assertFalse(c1.ingrediants.isEmpty());
 	}
 

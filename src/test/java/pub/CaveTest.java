@@ -7,13 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CaveTest {
-	private Cave cave;
-	private Boisson b1;
+	Cave cave;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		cave = new Cave();
-		b1 = new Boisson("Coca-Cola");
 		
 	}
 
@@ -22,24 +20,39 @@ class CaveTest {
 	}
 
 	@Test
-	void testCave() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testAdd() {
-		cave.rayons.add(b1);
+		Boisson b1 = new Boisson("Coca-Cola");
+		cave.add(b1);
 		assertFalse(cave.rayons.isEmpty());
+		assertTrue(cave.rayons.contains(b1));
 	}
 
 	@Test
-	void testTake() {
-		assertTrue(b1.equals(cave.take("Coca-Cola")));
+	void testTake_BoissonPresente() {
+		String nom = "Cognac";
+		float degre = 38;
+		Boisson boisson = new Boisson(nom, degre);
+		cave.add(boisson);
+		assertEquals(boisson, cave.take(nom));
+		assertFalse(cave.rayons.contains(boisson));
 	}
-
+	
+	@Test
+	void testTake_BoissonAbsente() {
+		String nom = "Tropico";
+		assertEquals(null, cave.take(nom));
+	}
+	
+	
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		Boisson b1 = new Boisson("Ice Tea");
+		Boisson b2 = new Boisson("Minute Maid");
+		cave.add(b1);
+		cave.add(b2);
+		String expected = "";
+		assertEquals(expected, cave.toString());
+		
 	}
 
 }

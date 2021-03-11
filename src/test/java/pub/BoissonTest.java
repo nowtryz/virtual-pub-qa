@@ -10,9 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class BoissonTest {
-	private Boisson b1;
-	private Boisson b2;
-	private Boisson b3;
 
 	@BeforeEach
 	void setUp() throws Exception {	
@@ -24,7 +21,7 @@ class BoissonTest {
 
 	@Test
 	void testBoissonString() {
-		b1 = new Boisson("Coca-Cola");
+		Boisson b1 = new Boisson("Coca-Cola");
 		assertNotNull(b1);
 		assertEquals("Coca-Cola", b1.nom);
 		assertNotEquals("Orangina", b1.nom);
@@ -38,13 +35,28 @@ class BoissonTest {
 		"Biere, .0"
 	})
 	void testBoissonStringFloat(String nom, float degre) {
-		b2 = new Boisson(nom, degre);
+		Boisson b2 = new Boisson(nom, degre);
 		assertTrue(b2.alcoolise);
 	}
 
 	@Test
-	void testToString() {
-		fail("Not yet implemented");
+	void testToString_BoissonSansAlcool() {
+		String nom = "Coca-Cola";
+		Boisson boisson = new Boisson(nom);
+		String expected = nom;
+		assertEquals(expected, boisson.toString());
+
 	}
+	
+	@Test
+	void testToString_BoissonAvecAlcool() {
+		String nom = "Leffe Rituel";
+		float degre = 9;
+		Boisson boisson = new Boisson(nom, degre);
+		String expected = nom + " (l'abus d'alcool est dangereux pour la sante)";
+		assertEquals(expected, boisson.toString());
+	}
+	
+	
 
 }
