@@ -46,11 +46,13 @@ class CaveTest {
 	
 	@Test
 	void testToString() {
-		Boisson b1 = new Boisson("Ice Tea");
-		Boisson b2 = new Boisson("Minute Maid");
+		String nom1 = "Ice Tea";
+		String nom2 = "Minute Maid";
+		Boisson b1 = new Boisson(nom1);
+		Boisson b2 = new Boisson(nom2);
 		cave.add(b1);
 		cave.add(b2);
-		String expected = "";
+		String expected = "Cave : " + System.lineSeparator() + "\t" + nom1 + System.lineSeparator() + "\t" + nom2 + System.lineSeparator();
 		assertEquals(expected, cave.toString());
 		
 	}

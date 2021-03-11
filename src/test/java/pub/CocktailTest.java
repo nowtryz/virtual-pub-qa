@@ -26,20 +26,28 @@ class CocktailTest {
 
 	@Test
 	void testAdd() {
-		c1.add("Menthe", 2.0);
-		c1.add("Rhum", 6.0);
-		c1.add("Eau gazeuse", 12.0);
+		c1.add("Menthe", 10.0);
+		c1.add("Rhum", 30.0);
+		c1.add("Eau gazeuse", 60.0);
 		assertFalse(c1.ingrediants.isEmpty());
 	}
 
 	@Test
 	void testAlcoolFree() {
-		assertTrue(c1.alcoolFree());
+		assertFalse(c1.alcoolFree());
 	}
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		Double quantite1 = 30.0;
+		String ingrediant1 = "Rhum";
+		Double quantite2 = 70.0;
+		String ingrediant2 = "Eau gazeuse";
+		c1.add(ingrediant1, quantite1);
+		c1.add(ingrediant2, quantite2);
+		String expected = ingrediant1 + " " + quantite1 + "%" + "\t" + ingrediant2 + " " + quantite2 + "%" + "\t";
+		assertEquals(expected, c1.toString());
+		
 	}
 
 }
