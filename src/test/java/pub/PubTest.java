@@ -2,33 +2,31 @@ package pub;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class PubTest {
+	Pub pub;
 
 	@BeforeEach
 	void setUp() throws Exception {
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
+		pub = new Pub();
 	}
 
 	@Test
-	void testPub() {
-		fail("Not yet implemented");
+	void testApprovisionnerBar_BoissonInconnue() {
+		assertThrows(Exception.class, () -> pub.approvisionnerBar("Polynectar"));
 	}
 
 	@Test
-	void testApprovisionnerBar() {
-		fail("Not yet implemented");
+	void testApprovisionnerBar_BoissonConnue() {
+		String nom = "Vodka";
+		Boisson boisson = new Boisson(nom);
+		boisson.alcoolise = true;
+		
+		pub.cave.add(boisson);
+		pub.approvisionnerBar(nom);
+		
+		assertTrue(pub.bar.boissonAlcoolisee.contains(boisson));
 	}
-
-	@Test
-	void testMain() {
-		fail("Not yet implemented");
-	}
-
 }
