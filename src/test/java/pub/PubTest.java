@@ -29,4 +29,9 @@ class PubTest {
 		
 		assertTrue(pub.bar.boissonAlcoolisee.contains(boisson));
 	}
+	
+	@Test
+	void testMain() {
+		Pub.main(new String[0]);
+	}
 }

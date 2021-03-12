@@ -51,8 +51,45 @@ class BarTest {
 	}
 
 	@Test
-	void testServ() {
-		fail("Not yet implemented");
+	void testServ_BoissonFroide() {
+		String nom = "Coca-Cola";
+		Boisson boisson = new Boisson(nom);
+		
+		bar.add(boisson);
+		assertEquals(boisson, bar.serv(nom));
+		assertFalse(bar.boissonFroide.contains(boisson));
+	}
+
+	@Test
+	void testServ_BoissonAlcoolise() {
+		String nom = "Vodka";
+		Boisson boisson = new Boisson(nom, 40f);
+		boisson.alcoolise = true;
+		
+		bar.add(boisson);
+		assertEquals(boisson, bar.serv(nom));
+		assertFalse(bar.boissonAlcoolisee.contains(boisson));
+	}
+
+	@Test
+	void testServ_CocktailSansAlcool() {
+		String nom = "Virgin sex on the beach";
+		Cocktail boisson = new Cocktail(nom);
+		
+		bar.add(boisson);
+		assertEquals(boisson, bar.serv(nom));
+		assertFalse(bar.cocktailSansAlcoole.contains(boisson));
+	}
+
+	@Test
+	void testServ_CocktailAvecAlcool() {
+		String nom = "Sex on the beach";
+		Cocktail boisson = new Cocktail(nom);
+		boisson.alcoolise = true;
+		
+		bar.add(boisson);
+		assertEquals(boisson, bar.serv(nom));
+		assertFalse(bar.cocktailAvecAlcoole.contains(boisson));
 	}
 
 	@Test

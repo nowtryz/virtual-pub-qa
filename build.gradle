@@ -1,7 +1,8 @@
 
 plugins {
 	id 'java'
-	id 'idea' // optional (to generate IntelliJ IDEA project files)
+	id 'eclipse'
+	id 'jacoco'
 }
 
 repositories {
@@ -15,6 +16,7 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport // report is always generated after tests run
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
