@@ -3,6 +3,7 @@ plugins {
 	id 'java'
 	id 'eclipse'
 	id 'jacoco'
+	id "name.remal.sonarlint" version "1.2.2"
 }
 
 repositories {
@@ -20,4 +21,8 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
+}
+
+check {
+	dependsOn sonarlintMain // run sonarLint for checks
 }
